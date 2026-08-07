@@ -541,9 +541,9 @@ impl Workspaces {
                             let urgent = w.has_urgent;
                             let active = w.displayed == Displayed::Active;
                             let color_index = if self.config.enable_virtual_desktops {
-                                Some(w.id as i128)
+                                Some((w.id - 1) as i128)
                             } else {
-                                w.monitor_id
+                                w.monitor_id.map(|id| id - 1)
                             };
 
                             let color = color_index.map(|i| {
