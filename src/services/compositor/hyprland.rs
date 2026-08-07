@@ -229,11 +229,11 @@ fn fetch_full_state(internal_state: &HyprInternalState) -> Result<CompositorStat
                 Vec::new()
             };
             CompositorWorkspace {
-                id: w.id,
-                index: w.id,
+                id: w.id - 1,
+                index: w.id - 1,
                 name: w.name,
                 monitor: w.monitor,
-                monitor_id: w.monitor_id,
+                monitor_id: w.monitor_id.map(|id| id - 1),
                 windows: w.windows,
                 is_special: w.id < 0,
                 has_urgent: false,
